@@ -1,5 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
+import "../app/style/card.css"
+
 interface propsType {
     title:string;
     desc:string;
@@ -9,21 +11,23 @@ interface propsType {
 
 const Card:React.FC<propsType> = ({title, desc, image, tags}) => {
   return (
-    <div className='border border-accent w-[300px] sm:w-[350px]' data-aos="zoom-in-up">
+    <div className= {`card ${window.innerWidth >= 640  ? 'card-sm' : " " }`} data-aos="zoom-in-up">
         <div>
-            <Image  className='w-[300px] sm:w-[350px] h-auto '
+            <Image
+            
+        className= {`card.image ${window.innerWidth >= 640  ? 'card-image-sm' : " " }`} 
             src={image}
             width={350}
             height={350}
             alt={title}
             />
             </div>
-            <div className='p-4 space-y-4'>
-                <div className='text-4xl font-extralight'>{title}</div>
+            <div className='card-content'>
+                <div className='card-title'>{title}</div>
                 <div>{desc}</div>
                 <div>
                     {tags.map((el) => (
-                        <div className='tags' key={el}>
+                        <div className="card-tags" key={el}>
                             {el}
 
                         </div>))}
